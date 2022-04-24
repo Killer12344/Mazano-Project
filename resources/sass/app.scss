@@ -1,0 +1,19 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+$primary : #99e2bf;
+
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import "feather-icons/feather.css";
+@import 'sweetalert2/src/sweetalert2.scss';
+@import "slick/slick.css";
+@import "slick/slick-theme.css";
+@import "summernote/summernote.css";
+@import "summernote/summernote-lite.css";
+@import "summernote/summernote-bs4.css";
+@import "style.css";
