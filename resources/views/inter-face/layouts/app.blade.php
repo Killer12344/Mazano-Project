@@ -17,6 +17,7 @@
         <div class="row min-vh-100 justify-content-center align-items-center">
             <div class="col-12 col-md-12">
                 <h2 class="fw-bolder">Hello World</h2>
+                <button type="button" id="btn"> Hello </button>
             </div>
         </div>
     </div>
@@ -43,7 +44,8 @@
 @include('inter-face.layouts.footer')
 
 <script src="{{ asset('js/theme.js') }}"></script>
- @yield('foot')
+@yield('foot')
+@include('toast.alert')
 </body>
 </html>
 

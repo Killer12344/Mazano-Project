@@ -41,6 +41,6 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @yield('foot')
-@include('layouts.toast.alert')
+@include('toast.alert')
 </body>
 </html>

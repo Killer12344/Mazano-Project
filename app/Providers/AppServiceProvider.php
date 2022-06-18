@@ -7,6 +7,7 @@ use App\Category;
 use App\Order;
 use App\Photo;
 use App\Product;
+use App\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('categories',Category::all());
+        View::share('users',User::all());
         View::share('brands',Brand::all());
         View::share('products',Product::all());
         View::share('photos',Photo::all());

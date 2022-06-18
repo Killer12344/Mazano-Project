@@ -1,7 +1,6 @@
 @extends('inter-face.layouts.app')
 
 @section('content')
-
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4 mt-5">
             <div class="text-black-50 font-weight-bolder">Show 1<i class="bi-dash"></i>{{ $products->count() }} of {{  $products->total() }}</div>
@@ -40,7 +39,7 @@
                     <div class="card-body">
                         <h6 class="text-black-50 mb-2 text-uppercase">
                             {{ $p->category->title }}
-                            @if($p->created_at->format('d M Y') == date('d M Y'))
+                            @if($p->created_at->format('d') == date('d M Y'))
                                 <span class="text-lowercase bg-warning badge px-2 fw-bolder" style="padding: 5px"> New </span>
                             @endif
                         </h6>
@@ -75,12 +74,12 @@
                 $('.menu-sidebar').css({
                     'left' : '0px'
                 })
-            })
+            });
             $('#closeBtn').click(function () {
                 $('.menu-sidebar').css({
                     'left' : '-400px'
                 })
-            })
+            });
 
             {{--let productArr = @json($products);--}}
             {{--let count = productArr.data.length;--}}
@@ -92,13 +91,16 @@
                     let _token = $('input[name=_token]').val();
                     let product_id = $('#product_id'+id).val();
                     $.ajax({
-                        method : "post",
-                        url : "{{ route('order.store') }}",
+                        type : "post",
+                        url : "{{ route('product.cart') }}",
                         data : {
                             _token : _token,
-                            product_id : product_id,
+                            product_id : product_id
                         },
-                        success : function (data) {
+                        success : function (response) {
+                            window.location.reload();
+                        },
+                        error : function (response) {
                             window.location.reload();
                         }
                     })
@@ -109,19 +111,7 @@
             function addToCart(id){
                 $('#addToCartForm'+id).submit(function (e) {
                     e.preventDefault();
-                    let _token = $('input[name=_token]').val();
-                    let product_id = $('#product_id'+id).val();
-                    $.ajax({
-                        method : "post",
-                        url : "{{ route('order.store') }}",
-                        data : {
-                            _token : _token,
-                            product_id : product_id,
-                        },
-                        success : function (data) {
-                            window.location.href = '{{ route('login') }}';
-                        }
-                    })
+                    window.location.href = '{{ route('login') }}';
                 })
             }
 
@@ -129,5 +119,4 @@
 
         </script>
 @endsection
-
 

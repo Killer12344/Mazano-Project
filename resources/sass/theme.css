@@ -199,3 +199,13 @@ body{
 .icon-size{
     margin: 0px 15px;
 }
+
+@media screen and (max-width: 576px) {
+    .navbar{
+        padding: 15px !important;
+    }
+    #sidebarBtn{
+        width: 40px;
+        height: 40px;
+    }
+}

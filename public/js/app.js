@@ -76820,9 +76820,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/hha/Desktop/Mazano/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/hha/Desktop/Mazano/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/hha/Desktop/Mazano/resources/sass/theme.scss */"./resources/sass/theme.scss");
+__webpack_require__(/*! /home/hha/Desktop/Laravel Pj/Mazano/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/hha/Desktop/Laravel Pj/Mazano/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/hha/Desktop/Laravel Pj/Mazano/resources/sass/theme.scss */"./resources/sass/theme.scss");
 
 
 /***/ })

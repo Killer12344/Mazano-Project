@@ -23,6 +23,7 @@ Route::get('/brand/{slug}', 'WelcomeController@orderByBrand')->name('orderByBran
 Route::get('/price','WelcomeController@orderByPrice')->name('orderByPrice.index');
 Route::get('/price_desc', 'WelcomeController@priceDesc')->name('priceDesc.index');
 Route::get('/price_asc', 'WelcomeController@priceAsc')->name('priceAsc.index');
+Route::post('/card','WelcomeController@cart')->name('product.cart');
 Route::get('detail/{slug}','WelcomeController@showDetail')->name('product.showDetail');
 Route::get('detail/{slug}/review','ReviewController@index')->name('review.index');
 Route::get('/detail/review/delete/{id}','ReviewController@delete')->name('review.delete');

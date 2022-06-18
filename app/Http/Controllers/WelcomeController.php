@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\AddToCard;
+use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use function Symfony\Component\String\title;
 
 class WelcomeController extends Controller
 {
@@ -89,6 +94,28 @@ class WelcomeController extends Controller
         $related = Product::where('id','!=',$product_id)->orWhere('brand_id','==',$related_id)->limit(5)->get();
 
         return view('show-detail',compact('product', 'related'));
+    }
+
+    public function cart(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'unique:add_to_cards,product_id',
+        ]);
+
+        $request->validate([
+            'product_id' => 'unique:add_to_cards,product_id',
+        ]);
+
+        $addToCard = new AddToCard();
+        $currentItem = Product::find($request->product_id);
+        $addToCard->product_id = $currentItem->id;
+        $addToCard->user_id = Auth::user()->id;
+        $addToCard->category_id = $currentItem->category_id;
+        $addToCard->brand_id = $currentItem->brand_id;
+        $addToCard->save();
+
+        return response()->json($addToCard);
+
     }
 
 }
