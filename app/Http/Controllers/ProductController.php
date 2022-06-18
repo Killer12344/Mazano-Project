@@ -14,11 +14,6 @@ use phpDocumentor\Reflection\Types\True_;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = Product::when(isset(request()->search),function ($query){
@@ -29,23 +24,12 @@ class ProductController extends Controller
         return view('product.index',compact('products'))->with('detail');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
         return view('product.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -105,36 +89,17 @@ class ProductController extends Controller
         return redirect()->route('product.create')->with('message',['icon'=>'success','title'=>'New Product is Add']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function show(Product $product)
     {
         //
         return view('product.detail',compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Product $product)
     {
         return view('product.edit',compact('product'))->with(['photo']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Product $product)
     {
         //
@@ -178,42 +143,10 @@ class ProductController extends Controller
         return redirect()->route('product.create')->with('message',['icon'=>'success','title'=>'Product is Updated']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
         //
         $product->delete();
         return redirect()->back()->with('message',['icon'=>'success','title'=>'Product is Remove Now!']);
     }
-
-    public function cart($id){
-        $product = Product::findOrFail($id);
-        $cart = session()->get('cart', []);
-
-        if(isset($cart[$id])) {
-            return true;
-        } else {
-
-            $cart[$id] = [
-
-                "name" => $product->title,
-                "price" => $product->price,
-                "category"=> $product->category_id,
-                "brand"=> $product->brand_id,
-                "image" => $product->photo_link
-            ];
-        }
-
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-
-    }
-
-
-
 }

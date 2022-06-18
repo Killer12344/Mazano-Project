@@ -9,7 +9,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-    window.Swal = Swal
+    window.Swal = Swal;
     require('bootstrap');
 } catch (e) {}
 

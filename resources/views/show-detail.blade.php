@@ -21,7 +21,9 @@
                 <div class="mt-4 img">
                     @foreach($product->photo as $p)
                         <div class="p-1">
-                            <img src="{{asset('storage/products/'.$p->photos)}}" class="img-fluid" alt="">
+                            <a href="{{ asset('storage/products/'.$p->photos) }}" class="my-link">
+                                <img src="{{asset('storage/products/'.$p->photos)}}" class="img-fluid" alt="">
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -104,16 +106,25 @@
 
     <script src="{{ asset('js/theme.js') }}"></script>
     <script>
+
+        VenoBox({
+            selector: '.my-link',
+            numeration: true,
+            infinigall: true,
+            spinner: 'rotating-plane'
+        });
+
         $('#sidebarBtn').click(function () {
             $('.menu-sidebar').css({
                 'left' : '0px'
             })
-        })
+        });
+
         $('#closeBtn').click(function () {
             $('.menu-sidebar').css({
                 'left' : '-400px'
             })
-        })
+        });
 
         $('.img').slick({
             slidesToShow: 3,

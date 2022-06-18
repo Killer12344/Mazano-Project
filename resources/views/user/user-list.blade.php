@@ -40,7 +40,10 @@
                                             </td>
                                         @endif
                                         <td>{{ $user->created_at }}</td>
-
+                                    </tr>
+                                 @else
+                                    <tr>
+                                        <td colspan="6" class="text-danger"> Not User </td>
                                     </tr>
                                 @endif
                             @empty

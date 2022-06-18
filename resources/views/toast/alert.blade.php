@@ -14,10 +14,7 @@
             }
         })
 
-        Toast.fire({
-            icon: message.icon,
-            title: message.title,
-        })
+
 
     </script>
 

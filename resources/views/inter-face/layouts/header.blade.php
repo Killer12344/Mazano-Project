@@ -5,9 +5,7 @@
                 <div class="container">
                     <div class="d-flex align-items-center justify-content-between w-100">
                         <button class="btn btn-white" id="sidebarBtn"><i class="bi-list"></i></button>
-                        <div>
-                            <h3><a href="{{ route('index') }}" class="text-black text-decoration-none">Mazon.</a></h3>
-                        </div>
+                        <h3 class="mb-0"><a href="{{ route('index') }}" class="text-black text-decoration-none">Mazon.</a></h3>
                         <div class="">
                             <a href="#" class="nav-link text-black"><i class="bi-search icon-width"></i></a>
                             @if(auth()->user())

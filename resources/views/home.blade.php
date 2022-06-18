@@ -2,28 +2,82 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-5">
-            <div class="card">
+    <div class="row mb-3">
+        <div class="col-12 col-md-3">
+            <div class="card mb-3 mb-md-0 shadow">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="">
+                        <h5 class="font-weight-bolder mb-2">Products</h5>
+                        <h3 class="text-center m-0 text-success"> {{ $products->count()  }} </h3>
+                    </div>
+                    <i class="feather-tag text-light bg-primary py-2 px-4" style="font-size: 55px; border-radius: 20px"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card mb-3 mb-md-0 shadow">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="">
+                        <h5 class="font-weight-bolder mb-2">Categories</h5>
+                        <h3 class="text-center m-0 text-success"> {{ $categories->count()  }} </h3>
+                    </div>
+                    <i class="feather-layers text-light bg-primary py-2 px-4" style="font-size: 55px; border-radius: 20px"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card mb-3 mb-md-0 shadow">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="">
+                        <h5 class="font-weight-bolder mb-2">Brands</h5>
+                        <h3 class="text-center m-0 text-success"> {{ $brands->count()  }} </h3>
+                    </div>
+                    <i class="feather-award text-light bg-primary py-2 px-4" style="font-size: 55px; border-radius: 20px"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card mb-3 mb-md-0 shadow">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="">
+                        <h5 class="font-weight-bolder mb-2">Users</h5>
+                        <h3 class="text-center m-0 text-success"> {{ $users->where('role','1')->count() }} </h3>
+                    </div>
+                    <i class="feather-users text-light bg-primary py-2 px-4" style="font-size: 55px; border-radius: 20px"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card shadow">
                 <div class="card-body">
+                    <h4 class="font-weight-bolder text-center mb-3"> Product Category </h4>
                     <canvas id="myChart"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="font-weight-bolder text-center mb-3"> Product Brand </h4>
+                    <canvas id="product"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
             <div class="card">
                 <div class="card-body">
                     <canvas id="product"></canvas>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 @endsection
 @section('foot')
 
-<?php 
+<?php
 
     $data = [];
     $dataB = [];
@@ -38,20 +92,17 @@
         array_push($dataB,$vl);
     };
 
-
-
 ?>
 
 
 <script>
+
+
     let cat = @json($categories);
-    let pro = @json($products);
     let brand = @json($brands);
     let data = @json($data);
     let dataB = @json($dataB);
 
-
-    console.log(dataB);
     let labels = [];
     let labelsB = [];
 
@@ -82,32 +133,27 @@ const myChart = new Chart(ctx, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 0
         }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        legend: {
-            display: true,
-          position: 'bottom',
-            labels: {
-                fontColor: '#333',
-                usePointStyle : true,
+        plugins: {
+            legend: {
+                display: false,
+                position: 'bottom',
+                labels: {
+                    color: 'rgb(255, 99, 132)',
+                    pointStyle: 'circle',
+                    usePointStyle: 'boolean',
+                }
             }
         }
     }
 });
-
-
-
 
 const ctx1 = document.getElementById('product').getContext('2d');
 const myChart1 = new Chart(ctx1, {
-    type: 'doughnut',
+    type: 'pie',
     data: {
         labels: labelsB,
         datasets: [{
@@ -121,59 +167,19 @@ const myChart1 = new Chart(ctx1, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
+            borderWidth: 0
         }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-
-
-
-const ctx2 = document.getElementById('view').getContext('2d');
-const myChart2 = new Chart(ctx2, {
-    type: 'line',
-    data: {
-        labels: labelsB,
-        datasets: [{
-            label: '# of Votes',
-            data: dataB,
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+        plugins: {
+            legend: {
+                display: false,
+                position: 'bottom',
+                labels: {
+                    color: 'rgb(255, 99, 132)',
+                    pointStyle: 'circle',
+                    usePointStyle: 'boolean',
+                }
             }
         }
     }
